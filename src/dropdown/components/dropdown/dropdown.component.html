@@ -1,0 +1,8 @@
+<div class="dropdown-wrapper" (click)="active=!active" [ngClass]="{'active':active}" #dropdown>
+    <input type="text" *ngIf="settings?.isDatalist" [(ngModel)]="searchTerm" (keyup)="search()">
+    <span *ngIf="!settings?.isDatalist" class="selected">{{selectedItem}}</span>
+    <span [class]="settings?.caretClass" id="caret" [ngStyle]="{'top':positionTop,'right':positionRight}" [ngClass]="{'icon':!settings?.caretClass}"></span>
+    <ul class="dropdown">
+        <li *ngFor="let option of filterOptions;let i = index" (click)="changeValue(i)"><span>{{option}}</span></li>
+    </ul>
+</div>
