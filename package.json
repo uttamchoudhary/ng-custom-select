@@ -1,7 +1,7 @@
 {
     "name": "ng-custom-select",
     "version": "1.0.0",
-    "description": "",
+    "description": "Create customizable Angular2+ dropdown/datalist with your own styles",
     "main": "dist/bundles/ng-custom-select.umd.js",
     "author": "Uttam Choudhary",
     "license": "MIT",

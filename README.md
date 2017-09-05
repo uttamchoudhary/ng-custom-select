@@ -1,28 +1,37 @@
-# AngularCustomDropdown
+# Angular Custom Dropdown
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
+> Create customizable Angular2+ dropdown/datalist with your own styles.
 
-## Development server
+## Install
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+npm install ng-custom-select
+```
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Import DropdownModule into your module
 
-## Build
+your-module.module.ts
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```
+import { DropdownModule } from 'ng-custom-select';
 
-## Running unit tests
+@NgModule({
+  imports: [
+    ...
+    DropdownModule,
+  ],
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Now you can use dropdown selector in your component
 
-## Running end-to-end tests
+your-component.component.html
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+```
+<ng-dropdown [selected]="selected" [options]="options" [settings]="settings" (onchange)="changeValue($event)"></ng-dropdown>
+```
 
-## Further help
+## License
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+MIT © [Uttam Pratap Choudhary](//https://github.com/uttamchoudhary)
