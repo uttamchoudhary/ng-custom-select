@@ -20,7 +20,7 @@ try {
     copyfiles([
         'README.md',
         'LICENSE',
-        'yarn.lock',
+        '.npmignore',
         'dist' // Destination path
     ], {}, () => null);
     console.log('Copied additional files');

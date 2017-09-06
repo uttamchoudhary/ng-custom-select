@@ -1,6 +1,6 @@
 {
     "name": "ng-custom-select",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "Create customizable Angular2+ dropdown/datalist with your own styles",
     "main": "dist/bundles/dropdown.umd.js",
     "module": "dist/index.js",
