@@ -1,2 +1,3 @@
-export { DropdownModule } from './dropdown/dropdown.module';
-export { Settings } from './dropdown/model/settings.model';
+export * from './dropdown/dropdown.module';
+export * from './dropdown/dropdown.component';
+export * from './dropdown/model/settings.model';

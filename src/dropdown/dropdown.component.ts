@@ -1,10 +1,14 @@
-import { Settings } from './../../model/settings.model';
+import 'rxjs/add/operator/takeUntil';
+import 'rxjs/add/operator/takeUntil';
+
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+
+import { Settings } from './model/settings.model';
 
 @Component({
   selector: 'ng-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss'],
+  styleUrls: ['./dropdown.component.css'],
   host: {
     '(document:click)': 'closeDropdown($event)',
   }
