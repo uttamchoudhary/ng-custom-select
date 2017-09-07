@@ -3,6 +3,6 @@
     <span *ngIf="!settings?.isDatalist" class="selected">{{selectedItem}}</span>
     <span [class]="settings?.caretClass" id="caret" [ngStyle]="{'top':positionTop,'right':positionRight}" [ngClass]="{'icon':!settings?.caretClass}"></span>
     <ul class="dropdown">
-        <li *ngFor="let option of filterOptions;let i = index" (click)="changeValue(i)"><span>{{option}}</span></li>
+        <li class="option" *ngFor="let option of filterOptions;let i = index" (click)="changeValue(i)"><span class="text">{{option}}</span></li>
     </ul>
 </div>

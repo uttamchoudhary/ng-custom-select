@@ -1,6 +1,6 @@
 # Angular Custom Dropdown
 
-> Create customizable Angular2+ dropdown/datalist with your own styles.
+> Create customizable Angular2+ dropdown that can works as either select or datalist with no constraints on styles.
 
 ## Install
 
@@ -65,6 +65,50 @@ It emits onchange event to the parent component, So there should be an event han
 
 For styling of dropdown, SCSS or CSS can be written as global styles for uniform styling across the project, or you write styles inside your parent component styles using `/deep/` selector.
 
+**Note**: Please maintain the hierarchy of classes while writing style and don't forget to add `/deep/` before `.dropdown-wrapper` in case you are writing styles inside your parent component.
+
+sample.style.scss
+```
+.dropdown-wrapper {
+    padding: 12px 16px;
+    width: 20%;
+    border: 1px solid rgb(206, 205, 201);
+    cursor: pointer;
+    outline: none;
+    color: rgb(110, 108, 105);
+    .dropdown {
+        /* Styles */
+        background: #fff;
+        border-radius: 0 0 5px 5px;
+        border: 1px solid rgb(206, 205, 201);
+        border-top: none;
+        box-sizing: border-box;
+        max-height: 400px;
+        border-bottom: 1px solid rgb(206, 205, 201);
+        /* Hover state */
+        .option:hover .text {
+            color: #d15947;
+        }
+        .option {
+            padding: 0.8em;
+            border-bottom: 1px solid rgb(206, 205, 201);
+            .text {
+                text-decoration: none;
+                color: rgb(110, 108, 105);
+                padding: 1em 0;
+            }
+        }
+    }
+}
+
+.caret {
+    &::after {
+        content: "▼";
+        text-align: center;
+        pointer-events: none;
+    }
+}
+```
  
 ## License
 
