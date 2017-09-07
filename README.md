@@ -36,14 +36,15 @@ export class YourComponent {
 Settings interface
 ```
 interface Settings { 
-    output?: string; //what you want in output, 'value' or 'index' of selected item. Field is optional and Default is 'index'
-    isDatalist?: boolean; //true if you want dropdown to be act as Datalist. Field is optional and Default is false
-    caretClass?: string; //CSS class for your Caret icon, it can be a sprite class or glyphicon or font icon class. This is also optional and Default icon applies in that case.
+    output?: string;  //Optional | Default is 'index' | Type that you want in output, 'value' or 'index' of selected item.
+    isDatalist?: boolean;  //Optional | Default is false | true if you want dropdown to be act as Datalist.
+    caretClass?: string;  //Optional | Default is 'icon' | CSS class for your Caret icon, it can be a sprite class or glyphicon or font icon class.
 }
 ```
 
 
 It takes three inputs and emits change event to parent component.
+
 Inputs:
 ```
 options: Array<any>; //Required | "Array of numbers or string, these values will be displayed as options in dropdown list";
@@ -59,6 +60,11 @@ your-component.component.html
 ```
 
 It emits onchange event to the parent component, So there should be an event handler in parent component class. $event omits a 'value' or 'index' depending upon settings input.
+
+## Styling
+
+For styling of dropdown, SCSS or CSS can be written as global styles for uniform styling across the project, or you write styles inside your parent component styles using `/deep/` selector.
+
  
 ## License
 
