@@ -24,6 +24,11 @@
     right: 0;
     top: 0;
     z-index: 999;
+    -webkit-transition: transform .4s;
+    -moz-transition: transform .4s;
+    -ms-transition: transform .4s;
+    -o-transition: transform .4s;
+    transition: transform .4s;
 }
 
 .dropdown-wrapper .icon::after {
