@@ -1,0 +1,48 @@
+<h2>
+    app works!
+</h2>
+<h3>
+    Dropdown
+</h3>
+<form novalidate #templateForm="ngForm">
+    <ng-select name="selectBox" displayKey="name" [disable]="isDisable" [options]="options" [(ngModel)]="current" [styleGuide]="settings"></ng-select>
+</form>
+<span>{{templateForm.value | json}}</span>
+<br>
+
+<form novalidate [formGroup]="modelForm">
+    <ng-select formControlName="selectBox" isDatalist="true" [disable]="isDisable" [searchKeys]="searchKeys" [options]="options" [styleGuide]="settings" (onChange)="changeValue($event)"></ng-select>
+</form>
+
+<span>{{modelForm.value | json}}</span>
+
+<form novalidate [formGroup]="selectForm">
+    <ng-select formControlName="selectBox" [searchKeys]="searchKeys" [options]="options" [styleGuide]="settings" (onChange)="changeValue($event)"></ng-select>
+</form>
+
+<span>{{selectForm.value | json}}</span>
+
+<form novalidate [formGroup]="stringmodelForm">
+    <ng-select formControlName="selectBox" isDatalist="true" [options]="stringoptions" [styleGuide]="settings" (onChange)="changeValue($event)"></ng-select>
+</form>
+
+<span>{{stringmodelForm.value | json}}</span>
+
+<ng-select [options]="stringoptions" [styleGuide]="settings" (onChange)="changeValue($event)"></ng-select>
+<ng-select isDatalist="true" [options]="numericOptions" [styleGuide]="settings" (onChange)="changeValue($event)"></ng-select>
+
+
+<button type="button" (click)="printValue(templateForm); isDisable = !isDisable">Show</button>
+
+<p>
+    {{displayed | json}}
+</p>
+<!-- <ng-select [options]="options" (onchange)="changeValue($event)"></ng-select> -->
+<!-- <span data-count=20>items</span>
+<header>
+  <nav class="navigation">Hello world</nav>
+</header> -->
+<select>
+  <option value="1">Uttam</option>
+  <option value="2">Sachin</option>
+</select>
