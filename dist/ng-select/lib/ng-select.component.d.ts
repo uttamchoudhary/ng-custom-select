@@ -1,0 +1,30 @@
+import { OnInit, EventEmitter, ElementRef } from '@angular/core';
+import { ControlValueAccessor, Validator, ValidationErrors, FormControl } from '@angular/forms';
+export declare class NgSelectComponent implements OnInit, ControlValueAccessor, Validator {
+    private _eref;
+    options: Array<any>;
+    displayKey: string;
+    styleGuide: any;
+    isDatalist: boolean;
+    disable: boolean;
+    searchKeys: Array<string>;
+    searchInput: ElementRef;
+    onChange: EventEmitter<{}>;
+    selectedItem: any;
+    searchTerm: FormControl;
+    filterOptions: Array<any>;
+    active: boolean;
+    positionTop: any;
+    positionRight: any;
+    constructor(_eref: ElementRef);
+    private propagateChange;
+    writeValue(obj: any): void;
+    registerOnTouched(): void;
+    registerOnChange(fn: any): void;
+    validate(): ValidationErrors;
+    ngOnInit(): void;
+    initSearch(): void;
+    changeValue(option: any): void;
+    closeDropdown(event: any): void;
+    getCaretPosition(): void;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "ng-select",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  },
+  "main": "bundles/ng-select.umd.js",
+  "module": "fesm5/ng-select.js",
+  "es2015": "fesm2015/ng-select.js",
+  "esm5": "esm5/ng-select.js",
+  "esm2015": "esm2015/ng-select.js",
+  "fesm5": "fesm5/ng-select.js",
+  "fesm2015": "fesm2015/ng-select.js",
+  "typings": "ng-select.d.ts",
+  "metadata": "ng-select.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}
