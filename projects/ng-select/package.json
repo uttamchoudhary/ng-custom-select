@@ -1,8 +1,25 @@
 {
-  "name": "ng-select",
-  "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
-  }
+    "name": "ng-custom-select",
+    "version": "2.0.0",
+    "description": "Create customizable Angular2+ dropdown/datalist with your own styles",
+    "author": "Uttam Choudhary",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/uttamchoudhary/ng-custom-select.git"
+    },
+    "keywords": [
+        "angular 2",
+        "dropdown",
+        "ui select",
+        "datalist",
+        "select-box",
+        "custom-select",
+        "multi select"
+    ],
+    "peerDependencies": {
+        "@angular/common": "^6.0.3",
+        "@angular/core": "^6.0.3",
+        "@angular/forms": "^6.0.3"
+    }
 }

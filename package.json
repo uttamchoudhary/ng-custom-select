@@ -4,11 +4,12 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build",
+        "build": "ng build --prod",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "publish": "npm publish /dist/ng-select"
+        "build-lib": "ng build --prod ng-select",
+        "publish": "npm run build-lib && npm publish /dist/ng-select"
     },
     "private": true,
     "dependencies": {
