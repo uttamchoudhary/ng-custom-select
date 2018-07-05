@@ -352,7 +352,6 @@ var AppComponent = /** @class */ (function () {
             selectBox: [this.stringoptions[2], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
         //console.log(3);
-        //console.log(3);
     }
     AppComponent.prototype.changeValue = function (index) {
         this.displayed = index;
