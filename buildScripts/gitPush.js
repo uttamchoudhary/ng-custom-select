@@ -11,7 +11,7 @@ gulp.task("default", function() {
 
         gulp.src(["./../*", "!./../node_modules/"])
             .pipe(git.add())
-            .pipe(git.commit(`updated package to ${version}`))
+            .pipe(git.commit(`updated package to verson ${version}`))
             .pipe(push('origin', 'master', { args: " -f" }, function(err) {
                 if (err) throw err;
                 else console.log(chalk.green("[INFO]: Pushed updated versions of package managers"));
