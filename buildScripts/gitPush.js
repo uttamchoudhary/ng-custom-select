@@ -9,7 +9,7 @@ gulp.task("default", function() {
 
     lastTag.latest(function(err, commit) {
 
-        gulp.src(["./../projects/ng-select/package.json", "./../dist/", "./../docs/", "./../projects/", "./../src/"])
+        gulp.src(["./../*", "!./../node_modules/"])
             .pipe(git.add())
             .pipe(git.commit(`updated package json to ${version}`))
             .pipe(push({

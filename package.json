@@ -9,9 +9,9 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "updatePackage": "gulp --gulpfile buildScripts/npmBumpVersions.js --type $npm_config_type ",
-        "gitPush": "gulp --gulpfile buildScripts/gitPush.js",
+        "gitPush": "npm run build && gulp --gulpfile buildScripts/gitPush.js",
         "build-lib": "ng build --prod ng-select",
-        "publish": "npm run updatePackage && npm run build-lib && npm publish ./dist/ng-select && npm run gitPush"
+        "publish": "npm run updatePackage && npm run build-lib && npm publish ./dist/ng-select && npm run build && npm run gitPush"
     },
     "private": true,
     "dependencies": {
