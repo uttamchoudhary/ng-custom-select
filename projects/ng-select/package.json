@@ -1,6 +1,6 @@
 {
     "name": "ng-custom-select",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Create customizable Angular2+ dropdown/datalist with your own styles",
     "author": "Uttam Choudhary",
     "license": "MIT",
@@ -20,6 +20,8 @@
     "peerDependencies": {
         "@angular/common": "^6.0.3",
         "@angular/core": "^6.0.3",
-        "@angular/forms": "^6.0.3"
+        "@angular/forms": "^6.0.3",
+        "rxjs": "^6.0.0",
+        "zone.js": "^0.8.26"
     }
 }
