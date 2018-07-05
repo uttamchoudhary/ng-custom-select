@@ -15,7 +15,7 @@ gulp.task("default", function() {
             .pipe(push('origin', function(err) {
                 if (err) throw err;
                 else console.log(chalk.green("[INFO]: Pushed updated versions of package managers"));
-            }));
+            }, function(err) {}));
 
     });
 });
