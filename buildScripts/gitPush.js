@@ -11,7 +11,7 @@ gulp.task("default", function() {
 
         gulp.src(["./../*", "!./../node_modules/"])
             .pipe(git.add())
-            .pipe(git.commit(`updated package json to ${version}`))
+            .pipe(git.commit(`updated package to ${version}`))
             .pipe(push({
                 repository: "origin",
                 refspec: "HEAD"
