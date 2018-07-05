@@ -12,10 +12,7 @@ gulp.task("default", function() {
         gulp.src(["./../*", "!./../node_modules/"])
             .pipe(git.add())
             .pipe(git.commit(`updated package to ${version}`))
-            .pipe(push('origin', function(err) {
-                if (err) throw err;
-                else console.log(chalk.green("[INFO]: Pushed updated versions of package managers"));
-            }, function(err) {}));
-
+            .pipe(push());
+        console.log(chalk.green("[INFO]: Pushed updated versions of package managers"));
     });
 });
