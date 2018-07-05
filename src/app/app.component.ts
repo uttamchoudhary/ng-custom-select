@@ -57,6 +57,7 @@ export class AppComponent {
     this.stringmodelForm = this._fb.group({
       selectBox : [this.stringoptions[2], Validators.required]
     })
+    console.log(3);
   }
   changeValue(index){
     this.displayed = index;
