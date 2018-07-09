@@ -64,7 +64,7 @@ export class NgSelectComponent implements OnInit, ControlValueAccessor, Validato
 
   writeValue(obj: any) {
     this.selectedItem = obj;
-    obj ? this.searchTerm.setValue(obj[this.displayKey] || obj) : null;
+    obj && Object.keys(obj).length ? this.searchTerm.setValue(obj[this.displayKey] || obj) : null;
   }
 
   registerOnTouched() { }
