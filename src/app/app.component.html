@@ -46,3 +46,190 @@
   <option value="1">Uttam</option>
   <option value="2">Sachin</option>
 </select> -->
+<loader></loader>
+<div class="page-header mt-2 mb-3">
+    <h1 class="text-center">Ng Custom Select <small class="text-muted">Custom selectbox for angular</small></h1>
+</div>
+
+<div class="container">
+    <form novalidate [formGroup]="configForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label>Disabled <i class="fas fa-exclamation-circle" [ngbPopover]="Disabled" popoverClass="custom-popover" triggers="mouseenter:mouseleave" placement="right"></i></label>
+                        <ng-template #Disabled>
+                            content to be shown in the popover content to be shown in the popover content to be shown in the popover
+
+                        </ng-template>
+                    </div>
+                    <div class="col-md-1 m-l-60 switch">
+                        <label>
+                            <input type="checkbox" formControlName="disable">
+                            <span class="lever"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="options">Options List</label>
+                    <div class="input-group">
+                        <textarea class="form-control" id="options" formControlName="options" aria-describedby="options list" rows="5" placeholder="Enter List of options here"></textarea>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle" [ngbPopover]="options" popoverClass="custom-popover" triggers="mouseenter:mouseleave" placement="top"></i></span>
+                        </div>
+                    </div>
+                    <ng-template #options>
+                        content to be shown in the popover content to be shown in the popover content to be shown in the popover
+
+                    </ng-template>
+                    <!-- <small class="form-text text-muted">Enter your Array of objects or strings. (Should be stringified)</small> -->
+                </div>
+                <div class="form-group">
+                    <label for="displayKey">Display Key Name</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="displayKey" formControlName="displayKey" placeholder="Name of Key">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                        </div>
+                    </div>
+                    <!-- <small class="form-text text-muted">Name of key from your options array. Value of this key will be displayed as options. (By default 1st key is used)</small> -->
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label>Datalist <i class="fas fa-exclamation-circle"></i></label>
+                    </div>
+                    <div class="col-md-1 m-l-61 switch">
+                        <label>
+                            <input type="checkbox" formControlName="isDatalist">
+                            <span class="lever"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" [hidden]="!configForm.controls.isDatalist.value">
+                    <label for="searchKeys">Keys name to search upon</label>
+                    <div class="input-group">
+                        <textarea class="form-control" id="searchKeys" formControlName="searchKeys" aria-describedby="searchKeys" rows="3" placeholder="Enter Search keys"></textarea>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                        </div>
+                    </div>
+                    <!-- <small class="form-text text-muted">Enter your Array of objects or strings. (Should be stringified)</small> -->
+                </div>
+
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label>Style Guide <i class="fas fa-exclamation-circle"></i></label>
+                    </div>
+                    <div class="col-md-1 m-l-60 switch">
+                        <label>
+                            <input type="checkbox" formControlName="userStyleGuide">
+                            <span class="lever"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" [hidden]="!configForm.controls.userStyleGuide.value">
+                    <label for="styleGuide">Class Name Object</label>
+                    <div class="input-group">
+                        <textarea class="form-control" id="styleGuide" formControlName="styleGuide" aria-describedby="style Guide" rows="5" placeholder="Enter Object containing class names for select"></textarea>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                        </div>
+                    </div>
+                    <!-- <small class="form-text text-muted">Enter your Array of objects or strings. (Should be stringified)</small> -->
+                </div>
+                <div class="form-group" [hidden]="!configForm.controls.userStyleGuide.value">
+                    <label for="css">CSS</label>
+                    <div class="input-group">
+                        <textarea class="form-control" id="css" formControlName="styles" aria-describedby="write styles" rows="5" placeholder="Write your css here"></textarea>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                        </div>
+                    </div>
+                    <!-- <small class="form-text text-muted">Enter your Array of objects or strings. (Should be stringified)</small> -->
+                </div>
+                <div class="form-group" [hidden]="!configForm.controls.userStyleGuide.value">
+                    <label for="cssUrl">CSS Url</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" formControlName="cssUrl" id="cssUrl" placeholder="Enter your http url to load css">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                        </div>
+                    </div>
+                    <!-- <small class="form-text text-muted">Name of key from your options array. Value of this key will be displayed as options. (By default 1st key is used)</small> -->
+                </div>
+                <!-- <div class="form-group">
+                        <label for="selectBoxClass">SelectBox Class</label>
+                        <input type="text" class="form-control" id="selectBoxClass" aria-describedby="select Box Class" placeholder="Enter select class name">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectMenuClass">SelectMenu Class</label>
+                        <input type="text" class="form-control" id="selectMenuClass" aria-describedby="select menu Class" placeholder="Enter select menu class name">
+                    </div>
+                    <div class="form-group">
+                        <label for="optionsClass">Select Options Class</label>
+                        <input type="text" class="form-control" id="optionsClass" aria-describedby="select options Class" placeholder="Enter options class name">
+                    </div>
+                    <div class="form-group">
+                        <label for="caretClass">Caret Icon Class</label>
+                        <input type="text" class="form-control" id="caretClass" aria-describedby="caret icon Class" placeholder="Enter caret class name">
+                    </div> -->
+            </div>
+        </div>
+        <div class="form-group mt-2">
+            <button type="button" class="btn btn-primary d-flex mx-auto" [disabled]="!configForm.valid" (click)="prepareResult(resultModal)">Try it out</button>
+        </div>
+    </form>
+</div>
+
+<modal #resultModal [config]="modalConfig" (onClose)="modalClose()">
+    <modal-content>
+        <div class="container-fluid">
+            <div class="row d-flex">
+                <div class="mx-auto" *ngIf="showModal">
+                    <ng-select [isDatalist]="isDataList" [displayKey]="displayKey" [searchKeys]="searchKeys" [options]="list" [disable]="isDisable" [styleGuide]="styleGuide"></ng-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ngb-tabset>
+                        <ngb-tab title="HTML">
+                            <ng-template ngbTabContent>
+                                <pre [innerText]='html'>
+
+                               </pre>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="CSS">
+                            <ng-template ngbTabContent>
+                                <pre class="" [innerText]='css'>
+                                
+                                       
+                                      
+                                      
+                               </pre>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="TS">
+                            <ng-template ngbTabContent>
+                                <pre [innerText]='ts'>
+
+                                </pre>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+
+            </div>
+        </div>
+
+    </modal-content>
+    <modal-footer>
+        <button class="btn btn-primary" (click)="try()">okay!</button>
+    </modal-footer>
+</modal>
