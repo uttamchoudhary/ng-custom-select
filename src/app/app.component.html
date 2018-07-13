@@ -189,7 +189,7 @@
 
 <modal #resultModal [config]="modalConfig" (onClose)="modalClose()">
     <modal-content>
-        <div class="container-fluid">
+        <div class="container-fluid height-400">
             <div class="row d-flex">
                 <div class="mx-auto" *ngIf="showModal">
                     <ng-select [isDatalist]="isDataList" [displayKey]="displayKey" [searchKeys]="searchKeys" [options]="list" [disable]="isDisable" [styleGuide]="styleGuide"></ng-select>
@@ -200,26 +200,21 @@
                     <ngb-tabset>
                         <ngb-tab title="HTML">
                             <ng-template ngbTabContent>
-                                <pre [innerText]='html'>
-
-                               </pre>
+                                <div class="code-container">
+                                    <pre [innerText]='html'></pre>
+                                </div>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="CSS">
                             <ng-template ngbTabContent>
-                                <pre class="" [innerText]='css'>
-                                
-                                       
-                                      
-                                      
-                               </pre>
+                                <div class="code-container">
+                                    <pre [innerText]='configForm.controls.styles.value'></pre>
+                                </div>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="TS">
                             <ng-template ngbTabContent>
-                                <pre [innerText]='ts'>
-
-                                </pre>
+                                <pre [innerText]='tsSnippet'></pre>
                             </ng-template>
                         </ngb-tab>
                     </ngb-tabset>

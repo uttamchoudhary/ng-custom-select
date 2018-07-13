@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-import { Settings } from './modal/models';
-import { LoaderService } from './loader/loader.service';
+import { Settings } from './shared/components/modal/models';
+import { LoaderService } from './shared/services/loader.service';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 
@@ -25,6 +25,16 @@ export class AppComponent implements OnInit {
     modalClass: 'modal-lg',
     backdrop: true
   }
+
+  defaultStyles = {
+    caretClass: 'icon-dropdown',
+    selectBoxClass: 'dropdown-wrapper',
+    selectMenuClass: 'dropdown',
+    optionsClass: 'option'
+  }
+
+  htmlSnippet;
+  tsSnippet;
 
   isDataList;
   displayKey;
@@ -56,6 +66,7 @@ export class AppComponent implements OnInit {
     this.processStyleUrl().subscribe(res => {
       this.appendStyles();
       this.prepareInputs();
+      this.prepareCodeSnippets();
       this.showModal = true;
       modal.open();
     });
@@ -103,11 +114,16 @@ export class AppComponent implements OnInit {
     this.list = JSON.parse(this.configForm.value.options);
     this.displayKey = this.configForm.value.displayKey;
     this.searchKeys = this.configForm.value.searchKeys && this.configForm.value.searchKeys.trim().replace(/\n/g, ',').replace(/\r/g, ',').replace(/[, ]+/g, ",").split(',');
-    this.styleGuide = this.configForm.value.styleGuide && JSON.parse(this.configForm.value.styleGuide);
+    this.styleGuide = Object.assign({}, this.defaultStyles, (this.configForm.value.styleGuide && JSON.parse(this.configForm.value.styleGuide)));
   }
 
   modalClose() {
     this.showModal = false;
+  }
+
+  prepareCodeSnippets(){
+    this.tsSnippet = `options=${this.configForm.value.options}
+    displayKey=${this.displayKey}`
   }
 
   isInputArray(): ValidatorFn {
@@ -135,6 +151,18 @@ export class AppComponent implements OnInit {
       } catch(e) {
 
       }
+      return typeof val === 'object' ? null : { invalidEntry: true }
+    }
+  }
+
+  isValidSearchKey():ValidatorFn {
+    return (control: AbstractControl): any => {
+      let val = control.value;
+      if (!val || val === null || val === undefined || val === '')
+        return null;
+
+      let keys = Object.keys(this.configForm.value.options[0]);
+     // val.trim().replace(/\n/g, ',').replace(/\r/g, ',').replace(/[, ]+/g, ",").split(',')
       return typeof val === 'object' ? null : { invalidEntry: true }
     }
   }
@@ -186,6 +214,19 @@ export class AppComponent implements OnInit {
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }`;
 ts = `settings = {
   caretClass: 'icon-dropdown',

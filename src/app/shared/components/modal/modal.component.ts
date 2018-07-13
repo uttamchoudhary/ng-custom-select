@@ -3,8 +3,7 @@ import { Settings } from './models';
 
 @Component({
   selector: 'modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  templateUrl: './modal.component.html'
 })
 export class ModalComponent implements OnChanges {
 

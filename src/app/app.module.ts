@@ -2,18 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 import { NgSelectModule } from 'ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalModule } from './modal/modal.module';
+
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { LoaderComponent } from './loader/loader.component';
-import { LoaderService } from './loader/loader.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -23,9 +23,10 @@ import { LoaderService } from './loader/loader.service';
     NgSelectModule,
     NgbModule.forRoot(),
     NgbModule,
-    ModalModule
+    SharedModule,
+    SharedModule.forRoot()
   ],
-  providers: [LoaderService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
