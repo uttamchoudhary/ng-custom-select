@@ -138,7 +138,7 @@ export class NgSelectComponent implements OnInit, ControlValueAccessor, Validato
 
   getCaretPosition() {
     let computedStyles = window.getComputedStyle(this._eref.nativeElement.querySelector('.ng-dropdown-wrapper'), null);
-    this.positionTop = computedStyles.getPropertyValue("padding-top");
+    //this.positionTop = computedStyles.getPropertyValue("padding-top");
     this.positionRight = computedStyles.getPropertyValue("padding-right");
   }
 }

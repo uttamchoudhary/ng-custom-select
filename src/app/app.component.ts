@@ -33,15 +33,16 @@ export class AppComponent implements OnInit {
     optionsClass: 'option'
   }
 
+  defaultOptions = `[{"key":"google","value":"Angular"},
+  {"key":"facebook","value":"React"},
+  {"key":"evan","value":"Vue"},
+  {"key":"tilde","value":"Ember"},
+  {"key":"twitter","value":"Bootstrap"}]`;
+
   htmlSnippet;
   tsSnippet;
 
-  isDataList;
-  displayKey;
-  searchKeys;
-  list;
-  isDisable;
-  styleGuide;
+  selectSettings = {};
 
   constructor(private _fb: FormBuilder, private loader: LoaderService, private _http: HttpClient) {
 
@@ -50,10 +51,10 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.configForm = this._fb.group({
       disable: [false],
-      options: ['', [Validators.required, this.isInputArray()]],
-      displayKey: [''],
+      options: [this.defaultOptions, [Validators.required, this.isInputArray()]],
+      displayKey: ['', [this.isValidSearchKey()]],
       isDatalist: [false],
-      searchKeys: [''],
+      searchKeys: ['', [this.isValidSearchKey()]],
       userStyleGuide: [false],
       styleGuide: ['', [this.isInputObject()]],
       styles: [''],
@@ -109,31 +110,39 @@ export class AppComponent implements OnInit {
   }
 
   prepareInputs() {
-    this.isDataList = this.configForm.value.isDatalist;
-    this.isDisable = this.configForm.value.disable;
-    this.list = JSON.parse(this.configForm.value.options);
-    this.displayKey = this.configForm.value.displayKey;
-    this.searchKeys = this.configForm.value.searchKeys && this.configForm.value.searchKeys.trim().replace(/\n/g, ',').replace(/\r/g, ',').replace(/[, ]+/g, ",").split(',');
-    this.styleGuide = Object.assign({}, this.defaultStyles, (this.configForm.value.styleGuide && JSON.parse(this.configForm.value.styleGuide)));
+    this.selectSettings['isDataList'] = this.configForm.value.isDatalist;
+    this.selectSettings['isDisable'] = this.configForm.value.disable;
+    this.selectSettings['list'] = JSON.parse(this.configForm.value.options);
+    this.selectSettings['displayKey'] = this.configForm.value.displayKey.trim();
+    this.selectSettings['searchKeys'] = this.configForm.value.searchKeys && this.configForm.value.searchKeys.trim().replace(/\n/g, ',').replace(/\r/g, ',').replace(/[, ]+/g, ",").split(',');
+    this.selectSettings['styleGuide'] = Object.assign({}, this.defaultStyles, (this.configForm.value.styleGuide && JSON.parse(this.configForm.value.styleGuide)));
   }
 
   modalClose() {
     this.showModal = false;
   }
 
-  prepareCodeSnippets(){
-    this.tsSnippet = `options=${this.configForm.value.options}
-    displayKey=${this.displayKey}`
+  prepareCodeSnippets() {
+    this.htmlSnippet = `<ng-select [isDatalist]="isDataList" [displayKey]="displayKey" [searchKeys]="searchKeys" 
+    [options]="list" [disable]="isDisable" [styleGuide]="styleGuide"></ng-select>`;
+    this.tsSnippet = {
+      options: `options = ${JSON.stringify(this.selectSettings['list'], null, 4)};`,
+      displayKey: this.selectSettings['displayKey'] && `displayKey = "${this.selectSettings['displayKey']}";`,
+      isDisable: this.selectSettings['isDisable'] && `disable = true;`,
+      isDatalist: this.selectSettings['isDataList'] && `isDatalist = true;`,
+      searchKeys : this.selectSettings['searchKeys'] && this.selectSettings['searchKeys'].length && `searchKeys = ${JSON.stringify(this.selectSettings['searchKeys'])};`,
+      styleGuide : this.configForm.value.styleGuide && `styleGuide = ${JSON.stringify(JSON.parse(this.configForm.value.styleGuide), null, 4)};`
+    }
   }
 
-  isInputArray(): ValidatorFn {
+  isInputArray(): ValidatorFn { 
     return (control: AbstractControl): any => {
       let val = control.value;
       if (!val || val === null || val === undefined || val === '')
         return null;
-      try{
+      try {
         val = JSON.parse(val);
-      } catch(e) {
+      } catch (e) {
 
       }
       return typeof val === 'object' && val instanceof Array && val.length ? null : { invalidEntry: true }
@@ -146,133 +155,33 @@ export class AppComponent implements OnInit {
       if (!val || val === null || val === undefined || val === '')
         return null;
 
-      try{
+      try {
         val = JSON.parse(val);
-      } catch(e) {
+      } catch (e) {
 
       }
       return typeof val === 'object' ? null : { invalidEntry: true }
     }
   }
 
-  isValidSearchKey():ValidatorFn {
+  isValidSearchKey(): ValidatorFn {
     return (control: AbstractControl): any => {
       let val = control.value;
       if (!val || val === null || val === undefined || val === '')
         return null;
 
-      let keys = Object.keys(this.configForm.value.options[0]);
-     // val.trim().replace(/\n/g, ',').replace(/\r/g, ',').replace(/[, ]+/g, ",").split(',')
-      return typeof val === 'object' ? null : { invalidEntry: true }
+      let validKeys = Object.keys(JSON.parse(this.configForm.value.options)[0]);
+      let keys = val.trim().replace(/\n/g, ',').replace(/\r/g, ',').replace(/[, ]+/g, ",").split(',');
+      for (let index = 0; index < keys.length; index++) {
+        if (validKeys.indexOf(keys[index]) < 0)
+          return { invalidEntry: true }
+      }
+      return null;
     }
   }
 
 
-  // isDisable = false;
-  // modelForm : FormGroup;
-  // list = [
-  //   {
-  //     key: 'order_details',
-  //     name: 'uttam',
-  //     status: 0
-  //   },
-  //   {
-  //     key: 'send_to',
-  //     name: 'Sachin',
-  //     status: 1
-  //   },
-  //   {
-  //     key: 'pick_to',
-  //     name: 'Anuj',
-  //     status: 2
-  //   },
-  //   {
-  //     key: 'pick_from',
-  //     name: 'Sunny',
-  //     status: 0
-  //   },
-
-  // ];
-  // current;
-  // //selected = 2;
-  settings = {
-    caretClass: 'icon-dropdown',
-    selectBoxClass: 'dropdown-wrapper',
-    selectMenuClass: 'dropdown',
-    optionsClass: 'option'
-  };
-  html = `<p class="text" novalidate>uttam</p>`
-  css = `pre {
-    display: block;
-    padding: 9.5px;
-    margin: 0 0 10px;
-    font-size: 13px;
-    line-height: 1.42857143;
-    color: #333;
-    word-break: break-all;
-    word-wrap: break-word;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-pre {
-  display: block;
-  padding: 9.5px;
-  margin: 0 0 10px;
-  font-size: 13px;
-  line-height: 1.42857143;
-  color: #333;
-  word-break: break-all;
-  word-wrap: break-word;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}`;
-ts = `settings = {
-  caretClass: 'icon-dropdown',
-  selectBoxClass: 'dropdown-wrapper',
-  selectMenuClass: 'dropdown',
-  optionsClass: 'option'
-}`
-  code = `<var>y</var> = <var>m</var><var>x</var> + <var>b</var>`
   // [{"key":"order_details","name":"uttam","status":0},{"key":"send_to","name":"Sachin","status":1},{"key":"pick_to","name":"Anuj","status":2},{"key":"pick_from","name":"Sunny","status":0}]
-  // stringoptions = ['uttam','sachin','anuj', 'anu', 'honey'];
   // {"caretClass":"icon-dropdown","selectBoxClass":"dropdown-wrapper","selectMenuClass":"dropdown","optionsClass":"option"}
-  // numericOptions = [1,2,3,4,57,8,23]
-  // displayed;
-  // selectForm : FormGroup;
-  // stringmodelForm : FormGroup;
-  //searchKeys = ['key', 'name', 'status'];
-  // constructor(private _fb: FormBuilder){
-  //   this.current = this.options[1];
-  //   this.modelForm = this._fb.group({
-  //     selectBox : [this.options[2], Validators.required]
-  //   })
-  //   this.selectForm = this._fb.group({
-  //     selectBox : [this.options[2], Validators.required]
-  //   })
-  //   this.stringmodelForm = this._fb.group({
-  //     selectBox : [this.stringoptions[2], Validators.required]
-  //   })
-  //   //console.log(3);
-  // }
-  // changeValue(index){
-  //   this.displayed = index;
-  // }
-
-  // printValue(templateForm){
-  //   console.log('Template form : ', templateForm.value);
-  //   console.log('Model form : ', this.modelForm.value);
-  //   // this.modelForm.patchValue({
-  //   //   selectBox : this.options[0]
-  //   // })
-  //   // this.searchKeys.splice(1,1);
-  //   console.log('Model form : ', this.modelForm.value);
-
-  // }
-
-  try(evt) {
-    //this.loader.start();
-    console.log(this.configForm.value);
-  }
+  
 }

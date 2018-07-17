@@ -1,52 +1,5 @@
-<!-- <h2>
-    app works!
-</h2>
-<h3>
-    Dropdown
-</h3>
-<form novalidate #templateForm="ngForm">
-    <ng-select name="selectBox" displayKey="name" [disable]="isDisable" [options]="options" [(ngModel)]="current" [styleGuide]="settings"></ng-select>
-</form>
-<span>{{templateForm.value | json}}</span>
-<br>
-
-<form novalidate [formGroup]="modelForm">
-    <ng-select formControlName="selectBox" isDatalist="true" [disable]="isDisable" [searchKeys]="searchKeys" [options]="options" [styleGuide]="settings" (onChange)="changeValue($event)"></ng-select>
-</form>
-
-<span>{{modelForm.value | json}}</span>
-
-<form novalidate [formGroup]="selectForm">
-    <ng-select formControlName="selectBox" [searchKeys]="searchKeys" [options]="options" [styleGuide]="settings" (onChange)="changeValue($event)"></ng-select>
-</form>
-
-<span>{{selectForm.value | json}}</span>
-
-<form novalidate [formGroup]="stringmodelForm">
-    <ng-select formControlName="selectBox" isDatalist="true" [options]="stringoptions" [styleGuide]="settings" (onChange)="changeValue($event)"></ng-select>
-</form>
-
-<span>{{stringmodelForm.value | json}}</span>
-
-<ng-select [options]="stringoptions" [styleGuide]="settings" (onChange)="changeValue($event)"></ng-select>
-<ng-select isDatalist="true" [options]="numericOptions" [styleGuide]="settings" (onChange)="changeValue($event)"></ng-select>
-
-
-<button type="button" (click)="printValue(templateForm); isDisable = !isDisable">Show</button>
-
-<p>
-    {{displayed | json}}
-</p>
-<ng-select [options]="options" [styleGuide]="settings" (onchange)="changeValue($event)"></ng-select>
-<span data-count=20>items</span>
-<header>
-    <nav class="navigation">Hello world</nav>
-</header>
-<select>
-  <option value="1">Uttam</option>
-  <option value="2">Sachin</option>
-</select> -->
-<loader></loader>
+<loader>
+</loader>
 <div class="page-header mt-2 mb-3">
     <h1 class="text-center">Ng Custom Select <small class="text-muted">Custom selectbox for angular</small></h1>
 </div>
@@ -87,7 +40,7 @@
                 <div class="form-group">
                     <label for="displayKey">Display Key Name</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="displayKey" formControlName="displayKey" placeholder="Name of Key">
+                        <input type="text" class="form-control" id="displayKey" formControlName="displayKey" placeholder="Name of Key" [disableControl]="configForm.controls.options.errors">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
                         </div>
@@ -110,7 +63,7 @@
                 <div class="form-group" [hidden]="!configForm.controls.isDatalist.value">
                     <label for="searchKeys">Keys name to search upon</label>
                     <div class="input-group">
-                        <textarea class="form-control" id="searchKeys" formControlName="searchKeys" aria-describedby="searchKeys" rows="3" placeholder="Enter Search keys"></textarea>
+                        <textarea class="form-control" id="searchKeys" formControlName="searchKeys" aria-describedby="searchKeys" rows="3" placeholder="Enter Search keys" [disableControl]="configForm.controls.options.errors"></textarea>
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
                         </div>
@@ -163,22 +116,6 @@
                     </div>
                     <!-- <small class="form-text text-muted">Name of key from your options array. Value of this key will be displayed as options. (By default 1st key is used)</small> -->
                 </div>
-                <!-- <div class="form-group">
-                        <label for="selectBoxClass">SelectBox Class</label>
-                        <input type="text" class="form-control" id="selectBoxClass" aria-describedby="select Box Class" placeholder="Enter select class name">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectMenuClass">SelectMenu Class</label>
-                        <input type="text" class="form-control" id="selectMenuClass" aria-describedby="select menu Class" placeholder="Enter select menu class name">
-                    </div>
-                    <div class="form-group">
-                        <label for="optionsClass">Select Options Class</label>
-                        <input type="text" class="form-control" id="optionsClass" aria-describedby="select options Class" placeholder="Enter options class name">
-                    </div>
-                    <div class="form-group">
-                        <label for="caretClass">Caret Icon Class</label>
-                        <input type="text" class="form-control" id="caretClass" aria-describedby="caret icon Class" placeholder="Enter caret class name">
-                    </div> -->
             </div>
         </div>
         <div class="form-group mt-2">
@@ -189,10 +126,10 @@
 
 <modal #resultModal [config]="modalConfig" (onClose)="modalClose()">
     <modal-content>
-        <div class="container-fluid height-400">
+        <div class="container-fluid">
             <div class="row d-flex">
                 <div class="mx-auto" *ngIf="showModal">
-                    <ng-select [isDatalist]="isDataList" [displayKey]="displayKey" [searchKeys]="searchKeys" [options]="list" [disable]="isDisable" [styleGuide]="styleGuide"></ng-select>
+                    <ng-select [isDatalist]="selectSettings?.isDataList" [displayKey]="selectSettings?.displayKey" [searchKeys]="selectSettings?.searchKeys" [options]="selectSettings?.list" [disable]="selectSettings?.isDisable" [styleGuide]="selectSettings?.styleGuide"></ng-select>
                 </div>
             </div>
             <div class="row">
@@ -201,11 +138,11 @@
                         <ngb-tab title="HTML">
                             <ng-template ngbTabContent>
                                 <div class="code-container">
-                                    <pre [innerText]='html'></pre>
+                                    <pre [innerText]='htmlSnippet'></pre>
                                 </div>
                             </ng-template>
                         </ngb-tab>
-                        <ngb-tab title="CSS">
+                        <ngb-tab *ngIf="configForm.controls.styles.value" title="CSS">
                             <ng-template ngbTabContent>
                                 <div class="code-container">
                                     <pre [innerText]='configForm.controls.styles.value'></pre>
@@ -214,7 +151,15 @@
                         </ngb-tab>
                         <ngb-tab title="TS">
                             <ng-template ngbTabContent>
-                                <pre [innerText]='tsSnippet'></pre>
+                                <pre>
+                                    <p *ngIf="tsSnippet?.options" class="m-0">{{tsSnippet.options}}</p>
+                                    <p *ngIf="tsSnippet?.isDisable" class="m-0">{{tsSnippet.isDisable}}</p>
+                                    <p *ngIf="tsSnippet?.isDatalist" class="m-0">{{tsSnippet.isDatalist}}</p>
+                                    <p *ngIf="tsSnippet?.displayKey" class="m-0">{{tsSnippet.displayKey}}</p>
+                                    <p *ngIf="tsSnippet?.searchKeys" class="m-0">{{tsSnippet.searchKeys}}</p>
+                                    <p *ngIf="tsSnippet?.styleGuide" class="m-0">{{tsSnippet.styleGuide}}</p>
+                                </pre>
+
                             </ng-template>
                         </ngb-tab>
                     </ngb-tabset>
@@ -225,6 +170,6 @@
 
     </modal-content>
     <modal-footer>
-        <button class="btn btn-primary" (click)="try()">okay!</button>
+        <button class="btn btn-success" (click)="resultModal.close()">close</button>
     </modal-footer>
 </modal>
