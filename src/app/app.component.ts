@@ -123,13 +123,13 @@ export class AppComponent implements OnInit {
   }
 
   prepareCodeSnippets() {
-    this.htmlSnippet = `<ng-select [isDatalist]="isDataList" [displayKey]="displayKey" [searchKeys]="searchKeys" 
-    [options]="list" [disable]="isDisable" [styleGuide]="styleGuide"></ng-select>`;
+    this.htmlSnippet = `<ng-select [options]="list" ${this.selectSettings['isDataList'] ? '[isDatalist]="isDataList"' : ''} ${this.selectSettings['displayKey'] && '[displayKey]="displayKey"'} 
+    ${this.selectSettings['searchKeys'] && '[searchKeys]="searchKeys"'} ${this.selectSettings['isDisable'] ? '[disable]="isDisable"' : ''} ${this.configForm.value.styleGuide && '[styleGuide]="styleGuide"'}></ng-select>`;
     this.tsSnippet = {
-      options: `options = ${JSON.stringify(this.selectSettings['list'], null, 4)};`,
+      options: `list = ${JSON.stringify(this.selectSettings['list'], null, 4)};`,
       displayKey: this.selectSettings['displayKey'] && `displayKey = "${this.selectSettings['displayKey']}";`,
-      isDisable: this.selectSettings['isDisable'] && `disable = true;`,
-      isDatalist: this.selectSettings['isDataList'] && `isDatalist = true;`,
+      isDisable: this.selectSettings['isDisable'] && `isDisable = true;`,
+      isDatalist: this.selectSettings['isDataList'] && `isDataList = true;`,
       searchKeys : this.selectSettings['searchKeys'] && this.selectSettings['searchKeys'].length && `searchKeys = ${JSON.stringify(this.selectSettings['searchKeys'])};`,
       styleGuide : this.configForm.value.styleGuide && `styleGuide = ${JSON.stringify(JSON.parse(this.configForm.value.styleGuide), null, 4)};`
     }
@@ -179,9 +179,5 @@ export class AppComponent implements OnInit {
       return null;
     }
   }
-
-
-  // [{"key":"order_details","name":"uttam","status":0},{"key":"send_to","name":"Sachin","status":1},{"key":"pick_to","name":"Anuj","status":2},{"key":"pick_from","name":"Sunny","status":0}]
-  // {"caretClass":"icon-dropdown","selectBoxClass":"dropdown-wrapper","selectMenuClass":"dropdown","optionsClass":"option"}
   
 }
