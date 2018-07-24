@@ -5,12 +5,16 @@ import { LoaderService } from './shared/services/loader.service';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 
+import { CONSTANTS } from './app.constants';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  private CONSTANTS = CONSTANTS;
 
   configForm: FormGroup;
   providedStyles;

@@ -11,10 +11,7 @@
                 <div class="form-group row">
                     <div class="col-md-3">
                         <label>Disabled <i class="fas fa-exclamation-circle" [ngbPopover]="Disabled" popoverClass="custom-popover" triggers="mouseenter:mouseleave" placement="right"></i></label>
-                        <ng-template #Disabled>
-                            content to be shown in the popover content to be shown in the popover content to be shown in the popover
-
-                        </ng-template>
+                        <ng-template #Disabled><span>{{CONSTANTS.TOOLTIP.DISABLE}}</span></ng-template>
                     </div>
                     <div class="col-md-1 m-l-60 switch">
                         <label>
@@ -32,25 +29,28 @@
                         </div>
                     </div>
                     <ng-template #options>
-                        content to be shown in the popover content to be shown in the popover content to be shown in the popover
-
+                        <span>{{CONSTANTS.TOOLTIP.OPTIONS}}</span>
                     </ng-template>
-                    <!-- <small class="form-text text-muted">Enter your Array of objects or strings. (Should be stringified)</small> -->
+                    <small *ngIf="configForm.controls.options.touched && configForm.controls.options.errors?.required" class="form-text text-danger">{{CONSTANTS.ERROR.REQUIRED}}</small>
+                    <small *ngIf="configForm.controls.options.errors?.invalidEntry" class="form-text text-danger">{{CONSTANTS.ERROR.OPTIONS}}</small>
                 </div>
                 <div class="form-group">
                     <label for="displayKey">Display Key Name</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="displayKey" formControlName="displayKey" placeholder="Name of Key" [disableControl]="configForm.controls.options.errors">
                         <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle" [ngbPopover]="displayKey" popoverClass="custom-popover" triggers="mouseenter:mouseleave" placement="top"></i></span>
                         </div>
                     </div>
-                    <!-- <small class="form-text text-muted">Name of key from your options array. Value of this key will be displayed as options. (By default 1st key is used)</small> -->
+                    <ng-template #displayKey>
+                        <span>{{CONSTANTS.TOOLTIP.DISPLAY_KEY}}</span>
+                    </ng-template>
+                    <small *ngIf="configForm.controls.displayKey.errors?.invalidEntry" class="form-text text-danger">{{CONSTANTS.ERROR.DISPLAY_KEY}}</small>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-md-3">
-                        <label>Datalist <i class="fas fa-exclamation-circle"></i></label>
+                        <label>Datalist <i class="fas fa-exclamation-circle" [ngbPopover]="datalist" popoverClass="custom-popover" triggers="mouseenter:mouseleave" placement="top"></i></label>
                     </div>
                     <div class="col-md-1 m-l-61 switch">
                         <label>
@@ -58,6 +58,9 @@
                             <span class="lever"></span>
                         </label>
                     </div>
+                    <ng-template #datalist>
+                        <span>{{CONSTANTS.TOOLTIP.DATALIST}}</span>
+                    </ng-template>
                 </div>
 
                 <div class="form-group" [hidden]="!configForm.controls.isDatalist.value">
@@ -65,19 +68,20 @@
                     <div class="input-group">
                         <textarea class="form-control" id="searchKeys" formControlName="searchKeys" aria-describedby="searchKeys" rows="3" placeholder="Enter Search keys" [disableControl]="configForm.controls.options.errors"></textarea>
                         <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle" [ngbPopover]="searchKey" popoverClass="custom-popover" triggers="mouseenter:mouseleave" placement="top"></i></span>
                         </div>
                     </div>
-                    <!-- <small class="form-text text-muted">Enter your Array of objects or strings. (Should be stringified)</small> -->
+                    <ng-template #searchKey>
+                        <span>{{CONSTANTS.TOOLTIP.SEARCH_KEY}}</span>
+                    </ng-template>
+                    <small *ngIf="configForm.controls.searchKeys.errors?.invalidEntry" class="form-text text-danger">{{CONSTANTS.ERROR.SEARCH_KEY}}</small>
                 </div>
-
-
 
             </div>
             <div class="col-md-6">
                 <div class="form-group row">
                     <div class="col-md-3">
-                        <label>Style Guide <i class="fas fa-exclamation-circle"></i></label>
+                        <label>Style Guide <i class="fas fa-exclamation-circle" [ngbPopover]="styleGuide" popoverClass="custom-popover" triggers="mouseenter:mouseleave" placement="right"></i></label>
                     </div>
                     <div class="col-md-1 m-l-60 switch">
                         <label>
@@ -85,37 +89,51 @@
                             <span class="lever"></span>
                         </label>
                     </div>
+                    <ng-template #styleGuide>
+                        <span>{{CONSTANTS.TOOLTIP.STYLE_GUIDE}}</span>
+                    </ng-template>
                 </div>
+
                 <div class="form-group" [hidden]="!configForm.controls.userStyleGuide.value">
                     <label for="styleGuide">Class Name Object</label>
                     <div class="input-group">
                         <textarea class="form-control" id="styleGuide" formControlName="styleGuide" aria-describedby="style Guide" rows="5" placeholder="Enter Object containing class names for select"></textarea>
                         <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle" [ngbPopover]="styleGuideObj" popoverClass="custom-popover" triggers="mouseenter:mouseleave" placement="left"></i></span>
                         </div>
                     </div>
-                    <!-- <small class="form-text text-muted">Enter your Array of objects or strings. (Should be stringified)</small> -->
+                    <ng-template #styleGuideObj>
+                        <span style="white-space: pre-line">{{CONSTANTS.TOOLTIP.STYLE_GUIDE_OBJ}}</span>
+                    </ng-template>
+                    <small *ngIf="configForm.controls.styleGuide.errors?.invalidEntry" class="form-text text-danger">{{CONSTANTS.ERROR.STYLE_GUIDE}}</small>
                 </div>
+
                 <div class="form-group" [hidden]="!configForm.controls.userStyleGuide.value">
                     <label for="css">CSS</label>
                     <div class="input-group">
                         <textarea class="form-control" id="css" formControlName="styles" aria-describedby="write styles" rows="5" placeholder="Write your css here"></textarea>
                         <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle" [ngbPopover]="css" popoverClass="custom-popover" triggers="mouseenter:mouseleave" placement="left"></i></span>
                         </div>
                     </div>
-                    <!-- <small class="form-text text-muted">Enter your Array of objects or strings. (Should be stringified)</small> -->
+                    <ng-template #css>
+                        <span>{{CONSTANTS.TOOLTIP.CSS}}</span>
+                    </ng-template>
                 </div>
+
                 <div class="form-group" [hidden]="!configForm.controls.userStyleGuide.value">
                     <label for="cssUrl">CSS Url</label>
                     <div class="input-group">
                         <input type="text" class="form-control" formControlName="cssUrl" id="cssUrl" placeholder="Enter your http url to load css">
                         <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
+                            <span class="input-group-text"><i class="fas fa-exclamation-circle" [ngbPopover]="cssURL" popoverClass="custom-popover" triggers="mouseenter:mouseleave" placement="left"></i></span>
                         </div>
                     </div>
-                    <!-- <small class="form-text text-muted">Name of key from your options array. Value of this key will be displayed as options. (By default 1st key is used)</small> -->
+                    <ng-template #cssURL>
+                        <span>{{CONSTANTS.TOOLTIP.CSS_URL}}</span>
+                    </ng-template>
                 </div>
+
             </div>
         </div>
         <div class="form-group mt-2">
