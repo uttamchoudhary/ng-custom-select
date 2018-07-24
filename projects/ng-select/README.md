@@ -1,6 +1,6 @@
 # Angular Custom Dropdown
 
-> Create customizable Angular 6 dropdown that can works as either select or datalist with no constraints on styles. Dropdown can be used as form element or independent element. `formControl` or `ngModel` can be used on this for bindings. Support 2-way binding. 
+> Create customizable Angular 6 dropdown that can works as either select or datalist with no constraints on styles. Dropdown can be used as form element or independent element. `formConrol` or `ngModel` can be used on this for bindings. Support 2-way binding. 
 
 ## Installation
 
@@ -12,6 +12,9 @@ npm install --save ng-custom-select
 ```
 npm install --save ng-custom-select@1.0.4
 ```
+## Demo
+
+Check working [Demo](https://uttamchoudhary.github.io/ng-custom-select/). You can test and generate code snippet from demo.
 
 ## Usage
 

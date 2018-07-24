@@ -2,12 +2,23 @@
     "name": "ng-custom-select",
     "version": "2.0.1",
     "description": "Create customizable Angular2+ dropdown/datalist with your own styles",
-    "author": "Uttam Choudhary",
+    "author": {
+        "name": "Uttam Choudhary",
+        "email": "uttampratapchoudhary@gmail.com",
+        "url": "https://www.linkedin.com/in/upchoudhary/"
+    },
     "license": "MIT",
     "repository": {
         "type": "git",
         "url": "https://github.com/uttamchoudhary/ng-custom-select.git"
     },
+    "bugs": {
+        "url": "https://github.com/uttamchoudhary/ng-custom-select/issues",
+        "email": "uttampratapchoudhary@gmail.com"
+    },
+
+    "homepage": "https://uttamchoudhary.github.io/ng-custom-select/",
+
     "keywords": [
         "angular 2",
         "dropdown",
