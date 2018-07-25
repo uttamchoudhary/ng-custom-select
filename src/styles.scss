@@ -75,44 +75,47 @@
 
 .custom-popover {
     width: 300px;
-    background: red;
+    background: #17a2b8;
+    span {
+        color: #fff !important;
+    }
     &.bs-popover-top {
         .arrow {
             &::after {
-                border-top-color: red;
+                border-top-color: #17a2b8;
             }
             &::before {
-                border-top-color: red;
+                border-top-color: #17a2b8;
             }
         }
     }
     &.bs-popover-right {
         .arrow {
             &::after {
-                border-right-color: red;
+                border-right-color: #17a2b8;
             }
             &::before {
-                border-right-color: red;
+                border-right-color: #17a2b8;
             }
         }
     }
     &.bs-popover-bottom {
         .arrow {
             &::after {
-                border-bottom-color: red;
+                border-bottom-color: #17a2b8;
             }
             &::before {
-                border-bottom-color: red;
+                border-bottom-color: #17a2b8;
             }
         }
     }
     &.bs-popover-left {
         .arrow {
             &::after {
-                border-left-color: red;
+                border-left-color: #17a2b8;
             }
             &::before {
-                border-left-color: red;
+                border-left-color: #17a2b8;
             }
         }
     }
@@ -188,6 +191,13 @@ pre {
 .height-400 {
     height: 400px;
     overflow: auto;
+}
+
+.hint-info {
+    position: relative;
+    top: 32px;
+    display: inline-block;
+    margin: 0;
 }
 
 // .code-container {

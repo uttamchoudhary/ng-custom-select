@@ -129,14 +129,14 @@ options = [
     {"key":"twitter","value":"Bootstrap"}
 ];
 displayKey = "value";
-disable = false;
-styleGuide: {
+isDisable = false;
+styleGuide = {
     caretClass: 'caret',
     selectBoxClass: 'dropdown-wrapper',
     selectMenuClass: 'dropdown',
     optionsClass: 'option' 
 };
-isDatalist = false;
+isDataList = false;
 searchKeys = ['key','value'];
 
 ```
